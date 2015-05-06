@@ -33,6 +33,8 @@ public class Hand implements Comparable {
    High Card
    WORST
    */
+
+   //hardest method, evaluate in order
    public String handValue() {
      return "TODO: String of Best Hand; may need helper methods";
    }
@@ -40,5 +42,6 @@ public class Hand implements Comparable {
    public int compareTo(Object x){
       Hand other = (Hand)x;
       //TODO: Compare hands by ordering above; return -1, 1, or 0
+      return -1;
    }
 }
