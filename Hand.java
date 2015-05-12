@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Hand implements Comparable {
    private ArrayList<Card> hand;
+   private int value=0;
 
    public Hand(){
       hand = new ArrayList<Card>();
@@ -77,17 +78,20 @@ public class Hand implements Comparable {
      int sames;
      int triples=0;
      int four=0;
+     int val=0;
      for(Card c : hand){
        sames=0;
        for(int i=0; i<hand.size(); i++){
          if(c.value==hand.get(i).value){
           sames++;
+          val=c.value;
          }
        }
        sames--; //removes case where card is compared to itself
        if(sames == 1) {pairs++;}
        if(sames== 2) {triples++;}
        if(sames == 3) {four++;}
+       val+=value;
      }
      pairs=pairs/2;
      if(four==1) {return 4;}
@@ -95,7 +99,10 @@ public class Hand implements Comparable {
      else if(triples == 1){return 3;}
      else if(pairs==2){return 2;}
      else if(pairs==1){return 1;}
-     else {return 0;}
+     else {
+       
+       return 0;
+     }
 
    }
 
@@ -112,12 +119,12 @@ public class Hand implements Comparable {
       else {return 0;}
    }
 
-   private int points(Hand h){
+   public int points(Hand h){
      //point system of hands
      int points=0;
-     String hand=h.handValue();
-     if(hand.equals("Royal Flush"))
+     if(hand.equals("Royal Flush")){
       points+=1000;
+     }
      else if(hand.equals("Straight Flush"))
       points+=900;
      else if(hand.equals("Four of a Kind"))
@@ -136,6 +143,6 @@ public class Hand implements Comparable {
       points+=200;
      else
       points+=100;
-     return points;
+     return points+value;
    }
 }

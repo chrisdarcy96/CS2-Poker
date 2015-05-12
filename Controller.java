@@ -44,4 +44,5 @@ public class Controller
       else if(result<0) {return "Hand 2 wins";}
       else{return "Tie";}
    }
+
 }
