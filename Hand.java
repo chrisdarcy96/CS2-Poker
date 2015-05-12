@@ -79,11 +79,8 @@ public class Hand implements Comparable {
      int four=0;
      for(Card c : hand){
        sames=0;
-       System.out.print(c.value+": ");
        for(int i=0; i<hand.size(); i++){
-         //System.out.print(hand.get(i).value+ ",");
          if(c.value==hand.get(i).value){
-          //System.out.println("SAME "+hand.get(i).value);
           sames++;
          }
        }
@@ -91,7 +88,6 @@ public class Hand implements Comparable {
        if(sames == 1) {pairs++;}
        if(sames== 2) {triples++;}
        if(sames == 3) {four++;}
-       //System.out.println("\n"+sames+" PAIRS "+pairs+" TRIPLES "+triples+" FOUR "+four);
      }
      pairs=pairs/2;
      if(four==1) {return 4;}
@@ -106,6 +102,36 @@ public class Hand implements Comparable {
    public int compareTo(Object x){
       Hand other = (Hand)x;
       //TODO: Compare hands by ordering above; return -1, 1, or 0
-      return -1;
+      int first=points(hand);
+      int second=points(other);
+      if(first>second) {return 1;}
+      if(second>first) {return -1;}
+      else {return 0;}
+   }
+
+   private int points(Hand h){
+     //point system of hands
+     int points=0;
+     String hand=h.handValue();
+     if(hand.equals("Royal Flush"))
+      points+=1000;
+     else if(hand.equals("Straight Flush"))
+      points+=900;
+     else if(hand.equals("Four of a Kind"))
+      points+=800;
+     else if(hand.equals("Full House"))
+      points+=700;
+     else if(hand.equals("Flush"))
+      points+=600;
+     else if(hand.equals("Straight"))
+      points+=500;
+     else if(hand.equals("Three of a Kind"))
+      points+=400;
+     else if(hand.equals("Two Pair"))
+      points+=300;
+     else if(hand.equals("One Pair"))
+      points+=200;
+     else
+        points+=100;
    }
 }
