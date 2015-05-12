@@ -102,7 +102,10 @@ public class Hand implements Comparable {
    public int compareTo(Object x){
       Hand other = (Hand)x;
       //TODO: Compare hands by ordering above; return -1, 1, or 0
-      int first=points(hand);
+      Hand han=new Hand();
+      for(Card c : hand)
+        han.add(c);
+      int first=points(han);
       int second=points(other);
       if(first>second) {return 1;}
       if(second>first) {return -1;}
@@ -132,6 +135,7 @@ public class Hand implements Comparable {
      else if(hand.equals("One Pair"))
       points+=200;
      else
-        points+=100;
+      points+=100;
+     return points;
    }
 }

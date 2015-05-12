@@ -40,6 +40,8 @@ public class Controller
 
    public static String findWinner(){
       int result = hand1.compareTo(hand2);
-      return "TODO: Who wins?";
+      if(result>0) {return "Hand 1 wins";}
+      else if(result<0) {return "Hand 2 wins";}
+      else{return "Tie";}
    }
 }
