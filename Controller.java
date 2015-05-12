@@ -28,6 +28,14 @@ public class Controller
 
    public static void dealHands(int x){
       //TODO: Deal x cards to each player
+      for(int i=0; i<x; i++){
+        Card temp1=deck.remove();
+        Card temp2=deck.remove();
+        //add Cards to hands
+        hand1.add(temp1);
+        hand2.add(temp2);
+      }
+
    }
 
    public static String findWinner(){
