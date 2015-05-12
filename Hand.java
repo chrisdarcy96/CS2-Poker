@@ -41,11 +41,18 @@ public class Hand implements Comparable {
        //must check for royal flush
        if(hand.get(0).value==10)
         return "Royal Flush";
-      else {return "Straight Flush";}
+       else {return "Straight Flush";}
      }
-
-
-     return "TODO: String of Best Hand; may need helper methods";
+     int tester=checkSameCard();
+     if(tester==4) {return "Four of a Kind";}
+     else if(tester==5) {return "Full House";}
+     else if(checkFlush()) {return "Flush";}
+     else if(checkStraight()) {return "Straight";}
+     else if(tester==3) {return "Three of a Kind";}
+     else if(tester==2) {return "Two Pair";}
+     else if(tester==1) {return "One Pair";}
+     else if (tester==0){return "High Card";}
+     else {return "Error";}
    }
 
    private boolean checkStraight(){
@@ -65,6 +72,36 @@ public class Hand implements Comparable {
      return true;
    }
 
+   private int checkSameCard(){
+     int pairs=0;
+     int sames;
+     int triples=0;
+     int four=0;
+     for(Card c : hand){
+       sames=0;
+       System.out.print(c.value+": ");
+       for(int i=0; i<hand.size(); i++){
+         //System.out.print(hand.get(i).value+ ",");
+         if(c.value==hand.get(i).value){
+          //System.out.println("SAME "+hand.get(i).value);
+          sames++;
+         }
+       }
+       sames--; //removes case where card is compared to itself
+       if(sames == 1) {pairs++;}
+       if(sames== 2) {triples++;}
+       if(sames == 3) {four++;}
+       //System.out.println("\n"+sames+" PAIRS "+pairs+" TRIPLES "+triples+" FOUR "+four);
+     }
+     pairs=pairs/2;
+     if(four==1) {return 4;}
+     else if(triples == 1 && pairs ==1) {return 5;}
+     else if(triples == 1){return 3;}
+     else if(pairs==2){return 2;}
+     else if(pairs==1){return 1;}
+     else {return 0;}
+
+   }
 
    public int compareTo(Object x){
       Hand other = (Hand)x;
